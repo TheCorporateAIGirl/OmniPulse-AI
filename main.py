@@ -37,3 +37,13 @@ def get_recommendation(data: TowerData):
         "action_protocol": action,
         "compliance_status": "Secure" if source != "OFF" else "High Risk of NCC Penalty"
     }
+    # Real-time IoT Ingestion Point
+@app.post("/ingest-telemetry")
+async def ingest_telemetry(data: dict):
+    """
+    Receives raw signals from Tower IoT Gateways.
+    Expected keys: fuel_level, grid_status, battery_v, solar_w
+    """
+    # This is where the Data Ingestion Pipeline starts
+    # 1. Validation 2. Storage 3. Inference
+    return {"status": "received", "tower_id": data.get("tower_id"), "action": "monitoring"}
